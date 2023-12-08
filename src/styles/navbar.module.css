@@ -10,6 +10,8 @@
     list-style-type: none;
 }
 
-.navItems li {
+.li {
     padding: 8px;
+    text-decoration: none;
+    color: black;
 }

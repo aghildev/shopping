@@ -5,7 +5,9 @@ import { cartContext } from "../context/CartContext";
 const SingleProduct = () => {
   const { productid } = useParams();
   const [data, setData] = useState([]);
+  const [addedToCart, setAddedToCart] = useState(false);
   const { cartItems, setCartItems } = useContext(cartContext);
+
   console.log(cartItems);
   useEffect(() => {
     const getProduct = async () => {
@@ -18,6 +20,7 @@ const SingleProduct = () => {
   console.log(data);
   const handleAddToCart = () => {
     setCartItems([...cartItems, data]);
+    setAddedToCart(true);
   };
   return (
     <div
@@ -27,7 +30,9 @@ const SingleProduct = () => {
       <h3>{data.title}</h3>
       <p>{data.description}</p>
       <h2>${data.price}</h2>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button disabled={addedToCart} onClick={handleAddToCart}>
+        {addedToCart ? "Added to cart" : "Add to Cart"}
+      </button>
     </div>
   );
 };
